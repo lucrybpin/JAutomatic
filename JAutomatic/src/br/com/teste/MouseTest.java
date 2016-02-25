@@ -12,6 +12,7 @@ public class MouseTest {
 	
 	public static void main(String[] args) throws AWTException {
 		MouseController.getPos();
+		MouseController.getPos();
 	}
 
 }
