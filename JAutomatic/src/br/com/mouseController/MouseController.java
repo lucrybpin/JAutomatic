@@ -1,6 +1,9 @@
 package br.com.mouseController;
 
 import java.awt.AWTException;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 
@@ -46,5 +49,47 @@ public class MouseController {
 		bot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
 		bot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
 		System.out.println("right click");
+	}
+	//getPos()
+	public static int[] getPos() {
+		PointerInfo a = MouseInfo.getPointerInfo();
+		Point b = a.getLocation();
+		int[] pos = {(int)b.getX(), (int)b.getY()};
+		System.out.println("mouse pos: [" + pos[0] + ", " + pos[1] +"]");
+		return pos;
+	}
+	//move(int x, int y)
+	public static void move(int x, int y) throws AWTException {
+		Robot bot = new Robot();
+		bot.mouseMove(x, y);
+	}
+	//move(int x, int y, int t)
+	public static void move(int x, int y, int t) throws AWTException {
+		//Mouse data
+		PointerInfo a = MouseInfo.getPointerInfo();
+		Point b = a.getLocation();
+		//Vm
+		float vx = (int) (x - b.getX())/ t;
+		float vy = (int) (y - b.getY())/ t;
+		long posX = (int) b.getX();
+		long posY = (int) b.getY();
+		//x = x0+ vx * Time.deltaTime;
+		//y = y0+ vy * Time.deltaTime;
+		long start = System.currentTimeMillis();
+		long last = System.nanoTime();
+		long current = start;
+		float seconds = 0;
+		while(seconds < t) {
+			current = System.nanoTime();
+			long deltaTime = current - last;
+			//Move
+			posX = (long) (posX + vx * deltaTime);
+			System.out.println(deltaTime);
+			//posY = (int) (posY + vy * deltaTime);
+			//MouseController.move(posX, posY);
+			seconds = (float) ((System.currentTimeMillis()-start)/1000);
+			//System.out.println(seconds);
+			last = current;
+		}
 	}
 }
