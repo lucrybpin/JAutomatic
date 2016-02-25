@@ -64,32 +64,11 @@ public class MouseController {
 		bot.mouseMove(x, y);
 	}
 	//move(int x, int y, int t)
-	public static void move(int x, int y, int t) throws AWTException {
-		//Mouse data
-		PointerInfo a = MouseInfo.getPointerInfo();
-		Point b = a.getLocation();
-		//Vm
-		float vx = (int) (x - b.getX())/ t;
-		float vy = (int) (y - b.getY())/ t;
-		long posX = (int) b.getX();
-		long posY = (int) b.getY();
-		//x = x0+ vx * Time.deltaTime;
-		//y = y0+ vy * Time.deltaTime;
-		long start = System.currentTimeMillis();
-		long last = System.nanoTime();
-		long current = start;
-		float seconds = 0;
-		while(seconds < t) {
-			current = System.nanoTime();
-			long deltaTime = current - last;
-			//Move
-			posX = (long) (posX + vx * deltaTime);
-			System.out.println(deltaTime);
-			//posY = (int) (posY + vy * deltaTime);
-			//MouseController.move(posX, posY);
-			seconds = (float) ((System.currentTimeMillis()-start)/1000);
-			//System.out.println(seconds);
-			last = current;
-		}
+	public static void move(int x, int y, float t) throws AWTException {
+		//"GameLoop"
+		//while(seconds <t)
+		// posX = posX + v * deltaTime
+		// posY = posY + v * deltaTime
+		// move(posX,posY);
 	}
 }
