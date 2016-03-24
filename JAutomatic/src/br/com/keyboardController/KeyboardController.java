@@ -32,4 +32,14 @@ public class KeyboardController {
 			robot.keyRelease(x);
 		}
 	}
+	//Type a string smoothly
+	public void typeSmooth(String input) throws AWTException {
+		int size = input.length();
+		for(int i=0; i< size; i++) {
+			int x = KeyEvent.getExtendedKeyCodeForChar(input.charAt(i));
+			robot.keyPress(x);
+			robot.keyRelease(x);
+			robot.delay(25);
+		}
+	}
 }
