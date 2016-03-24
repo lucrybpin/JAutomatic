@@ -2,7 +2,7 @@ package br.com.teste;
 
 import java.awt.AWTException;
 
-import br.com.KeyboardController.KeyboardController;
+import br.com.keyboardController.KeyboardController;
 import br.com.mouseController.MouseController;
 
 public class Test {

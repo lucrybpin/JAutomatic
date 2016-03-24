@@ -1,4 +1,4 @@
-package br.com.KeyboardController;
+package br.com.keyboardController;
 
 import java.awt.AWTException;
 import java.awt.Robot;
