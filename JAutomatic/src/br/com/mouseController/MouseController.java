@@ -9,11 +9,25 @@ import java.awt.event.InputEvent;
 
 public class MouseController {
 	
-	public MouseController() {
-	}
+	//Singleton
+	public static MouseController mouseController = new MouseController();
+	public static Robot robot;
 	
+	//Constructor
+	private MouseController() {
+		try {
+			robot = new Robot();
+		} catch (AWTException e) {
+			System.out.println("Problem instantiating robot from MouseController");
+			e.printStackTrace();
+		}
+	}	
+	//getInstance
+	public static MouseController getInstance() {
+		return mouseController;
+	}	
 	//click(button, x, y)
-	public static void click(String button, int x, int y) throws AWTException {
+	public void click(String button, int x, int y) throws AWTException {
 		Robot bot = new Robot();
 		if(button.equals("left")) {
 			bot.mouseMove(x, y);
@@ -29,7 +43,7 @@ public class MouseController {
 		}
 	}
 	//click(x,y)
-	public static void click(int x, int y) throws AWTException {
+	public void click(int x, int y) throws AWTException {
 		Robot bot = new Robot();
 		bot.mouseMove(x, y);
 		bot.mousePress(InputEvent.BUTTON1_MASK);
@@ -37,21 +51,21 @@ public class MouseController {
 		System.out.println("click [" +x+","+y+"]");
 	}
 	//click()
-	public static void click() throws AWTException {
+	public void click() throws AWTException {
 		Robot bot = new Robot();
 		bot.mousePress(InputEvent.BUTTON1_MASK);
 		bot.mouseRelease(InputEvent.BUTTON1_MASK);
 		System.out.println("click");
 	}
 	//clickRight()
-	public static void clickRight() throws AWTException {
+	public void clickRight() throws AWTException {
 		Robot bot = new Robot();
 		bot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
 		bot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
 		System.out.println("right click");
 	}
 	//getPos()
-	public static int[] getPos() {
+	public int[] getPos() {
 		PointerInfo a = MouseInfo.getPointerInfo();
 		Point b = a.getLocation();
 		int[] pos = {(int)b.getX(), (int)b.getY()};
@@ -59,12 +73,12 @@ public class MouseController {
 		return pos;
 	}
 	//move(int x, int y)
-	public static void move(int x, int y) throws AWTException {
+	public void move(int x, int y) throws AWTException {
 		Robot bot = new Robot();
 		bot.mouseMove(x, y);
 	}
 	//move(int x, int y, int t)
-	public static void move(int x, int y, float t) throws AWTException {
+	public void move(int x, int y, float t) throws AWTException {
 		//"GameLoop"
 		//while(seconds <t)
 		// posX = posX + v * deltaTime
