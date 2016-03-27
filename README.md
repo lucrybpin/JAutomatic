@@ -1,5 +1,5 @@
 # JAutomatic
-Projeto em cima do Java Robot inspirado no AutoIt V3
+jAutomatic is a project to simplify your life using automation over meaningful user tasks.
 
 ##What Can I do With jAutomatic?
 
