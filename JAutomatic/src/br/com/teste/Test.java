@@ -3,8 +3,7 @@ package br.com.teste;
 import java.awt.AWTException;
 import java.io.IOException;
 
-import br.com.keyboardController.KeyboardController;
-import br.com.mouseController.MouseController;
+import br.com.osController.OsController;
 
 public class Test {
 
@@ -19,17 +18,10 @@ public class Test {
 		
 		try
         {            
-			System.out.println("OS: " + System.getProperty("os.name") + "\n");
-            Runtime rt = Runtime.getRuntime();
-            Process proc = rt.exec("notepad");
-            Thread.sleep(1000);
-            KeyboardController.getInstance().typeSmooth("Digitando smoothly uma grande frase teste teste teste lorem impsum");
-            Thread.sleep(1000);
-            MouseController.getInstance().click(843,122);
-            Thread.sleep(500);
-            MouseController.getInstance().click(681,392);
+			//System.out.println(OsController.getInstance().execute("gedit"));
+			Process proc = OsController.getInstance().execute("gedit");
+            //KeyboardController.getInstance().typeSmooth("Digitando smoothly uma grande frase teste teste teste lorem impsum");
             int exitVal = proc.waitFor();
-            MouseController.getInstance().getPos();
             System.out.println("notepad exit value: " + exitVal);
         } catch (Throwable t)
           {
